@@ -1,0 +1,141 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vision of Beauty | Luxury Salon</title><link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script><!-- Firebase for cloud booking + multi device access --><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js"></script><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js"></script><style>
+.hero-bg{
+background:linear-gradient(rgba(255,240,245,0.9),rgba(255,240,245,0.9)),url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9');
+background-size:cover;
+background-position:center
+}
+</style></head><body class="bg-pink-50 text-gray-800"><!-- NAVBAR --><header class="bg-white shadow sticky top-0 z-50">
+<div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+<h1 class="text-2xl font-bold text-pink-700">Vision of Beauty</h1><nav class="space-x-6 text-sm">
+<a href="#services">Services</a>
+<a href="#gallery">Gallery</a>
+<a href="#pricing">Price List</a>
+<a href="#booking">Book</a>
+<a href="#contact">Contact</a>
+<a href="#admin">Admin</a>
+</nav></div>
+</header><!-- HERO --><section class="hero-bg text-center py-32">
+<h2 class="text-5xl font-bold text-pink-700 mb-4">Luxury Beauty Experience</h2>
+<p class="text-lg mb-6">Bridal Makeup • Facial • Hair Styling</p>
+<a href="#booking" class="bg-pink-600 text-white px-8 py-3 rounded-full shadow">Book Appointment</a>
+</section><!-- SERVICES --><section id="services" class="py-20 max-w-6xl mx-auto">
+<h2 class="text-3xl text-center font-bold mb-12">Premium Salon Services</h2><div class="grid md:grid-cols-3 gap-8"><div class="bg-white p-6 rounded-xl shadow">
+<h3 class="text-xl font-semibold">Bridal Makeup</h3>
+<p>HD bridal makeup packages for weddings.</p>
+</div><div class="bg-white p-6 rounded-xl shadow">
+<h3 class="text-xl font-semibold">Facial & Skin Care</h3>
+<p>Glow facial, gold facial and skin treatments.</p>
+</div><div class="bg-white p-6 rounded-xl shadow">
+<h3 class="text-xl font-semibold">Hair Styling</h3>
+<p>Haircut, hair spa, coloring and styling.</p>
+</div></div>
+</section><!-- BRIDAL GALLERY --><section id="gallery" class="py-20 bg-white">
+<h2 class="text-3xl text-center font-bold mb-12">Bridal Portfolio</h2><div id="galleryGrid" class="grid md:grid-cols-3 gap-6 max-w-6xl mx-auto"><img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f" class="rounded-xl" />
+<img src="https://images.unsplash.com/photo-1500840216050-6ffa99d75160" class="rounded-xl" />
+<img src="https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9" class="rounded-xl" /></div>
+</section><!-- PRICE LIST --><section id="pricing" class="py-20 max-w-6xl mx-auto">
+<h2 class="text-3xl text-center font-bold mb-10">Price List</h2><div class="grid md:grid-cols-2 gap-10"><div>
+<h3 class="font-bold mb-3">Hair</h3>
+<ul class="space-y-1">
+<li>Haircut — ₹299</li>
+<li>Blow Dry — ₹399</li>
+<li>Hair Spa — ₹899</li>
+</ul>
+</div><div>
+<h3 class="font-bold mb-3">Makeup</h3>
+<ul class="space-y-1">
+<li>Party Makeup — ₹2499</li>
+<li>Bridal Makeup — ₹9999</li>
+<li>Occasion Makeup — ₹3499</li>
+</ul>
+</div></div>
+</section><!-- BOOKING SYSTEM --><section id="booking" class="py-20 bg-pink-100">
+<h2 class="text-3xl text-center font-bold mb-8">Online Booking</h2><form id="bookingForm" class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow space-y-4"><input required type="text" id="name" placeholder="Customer Name" class="w-full border p-2 rounded" /><input required type="tel" id="phone" placeholder="Phone" class="w-full border p-2 rounded" /><select id="service" class="w-full border p-2 rounded">
+<option>Bridal Makeup</option>
+<option>Facial</option>
+<option>Hair Styling</option>
+</select><input type="date" id="date" class="w-full border p-2 rounded" /><input type="time" id="time" class="w-full border p-2 rounded" /><button class="w-full bg-pink-600 text-white py-2 rounded">Confirm Booking</button>
+
+</form>
+</section><!-- ADMIN PANEL --><section id="admin" class="py-20"><h2 class="text-3xl text-center font-bold mb-8">Salon Admin Panel</h2><div class="max-w-5xl mx-auto bg-white p-6 rounded-xl shadow"><h3 class="text-xl font-semibold mb-4">All Bookings</h3><table class="w-full border"><thead class="bg-pink-100">
+<tr>
+<th class="p-2">Name</th>
+<th class="p-2">Phone</th>
+<th class="p-2">Service</th>
+<th class="p-2">Date</th>
+<th class="p-2">Time</th>
+</tr>
+</thead><tbody id="bookingTable"></tbody></table></div></section><!-- WHATSAPP BUTTON --><a href="https://wa.me/919821153696" class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-full shadow-lg">
+WhatsApp Booking
+</a><!-- GOOGLE MAP --><section id="contact" class="py-20 text-center">
+<h2 class="text-3xl font-bold mb-6">Visit Us</h2>
+<p class="mb-6">M104 Sector 12 Pratap Vihar, Ghaziabad</p><iframe
+class="mx-auto rounded-lg"
+width="80%"
+height="350"
+loading="lazy"
+allowfullscreen
+src="https://www.google.com/maps?q=Pratap+Vihar+Ghaziabad&output=embed">
+</iframe></section><footer class="text-center py-6 bg-white">
+<p>© Vision of Beauty Salon</p>
+</footer><script>
+
+let bookings = JSON.parse(localStorage.getItem('salonBookings')||'[]')
+
+const form=document.getElementById('bookingForm')
+const table=document.getElementById('bookingTable')
+
+function renderBookings(){
+
+ table.innerHTML=''
+
+ bookings.forEach(b=>{
+
+ const row=`
+ <tr class="border">
+ <td class="p-2">${b.name}</td>
+ <td class="p-2">${b.phone}</td>
+ <td class="p-2">${b.service}</td>
+ <td class="p-2">${b.date}</td>
+ <td class="p-2">${b.time}</td>
+ </tr>`
+
+ table.innerHTML+=row
+
+ })
+
+}
+
+renderBookings()
+
+form.addEventListener('submit',function(e){
+
+ e.preventDefault()
+
+ const booking={
+ name:document.getElementById('name').value,
+ phone:document.getElementById('phone').value,
+ service:document.getElementById('service').value,
+ date:document.getElementById('date').value,
+ time:document.getElementById('time').value
+ }
+
+ bookings.push(booking)
+
+ localStorage.setItem('salonBookings',JSON.stringify(bookings))
+
+ renderBookings()
+
+ alert('Appointment Booked Successfully')
+
+ form.reset()
+
+})
+
+</script></body>
+</html>
